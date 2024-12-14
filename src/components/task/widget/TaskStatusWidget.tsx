@@ -12,7 +12,7 @@ export default function TaskStatusWidget({
     const status = value as ITaskStatus;
 
     return (
-        <div className="flex items-center  justify-center gap-3">
+        <div className="flex items-center  md:justify-center gap-3">
             {status === ITaskStatus.PENDING ? (
                 <Label
                     size="sm"

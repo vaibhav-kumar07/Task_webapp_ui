@@ -21,6 +21,8 @@ const Navbar = ({ token }: { token: string }) => {
                             src="/logo.png" // Replace with your logo path
                             alt="Logo"
                             className="h-8 w-8 rounded "
+                            width={20}
+                            height={20}
                         />
                         <span className="text-lg font-semibold text-gray-800">
                             Task Manager

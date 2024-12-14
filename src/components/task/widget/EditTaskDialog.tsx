@@ -1,12 +1,12 @@
 "use client";
 import { Pencil } from "lucide-react";
 import React, { useState } from "react";
-import CommonButton from "../common/Button";
-import { Dialog, DialogContent, DialogTitle } from "../ui/dialog";
-import { DialogHeader } from "../ui/dialog";
-import AddAndEditTaskForm from "./AddAndEditTaskForm";
+import CommonButton from "../../common/Button";
+import { Dialog, DialogContent, DialogTitle } from "../../ui/dialog";
+import { DialogHeader } from "../../ui/dialog";
+import AddAndEditTaskForm from "../AddAndEditTaskForm";
 import { cn } from "@/lib/utils";
-import CommonToast from "../common/Toast";
+import CommonToast from "../../common/Toast";
 import { ITask } from "@/types/task";
 import { updateTaskHandler } from "@/actions/task";
 
@@ -49,7 +49,7 @@ const EditTaskDialog = ({
                 className={cn("border-none", className)}
                 onClick={() => setIsOpen(true)}
             >
-                <Pencil size={16} className="" />
+                <Pencil size={20} className="" />
             </CommonButton>
 
             <Dialog open={isOpen} onOpenChange={setIsOpen}>

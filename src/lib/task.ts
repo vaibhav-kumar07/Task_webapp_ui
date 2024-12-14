@@ -1,7 +1,6 @@
 
 import * as FetchUtils from "@/lib/common/fetch-utils";
 import Logger from "@/utils/logger";
-import { getCookieValue } from "./common/cookie-utils";
 import { IResponse, QueryParameters } from "@/types/common";
 import qs from "query-string";
 import { ITaskStatus, StatsSummaryProps, TaskParams } from "@/types/task";
@@ -98,13 +97,9 @@ export const updateTask = async (
 };
 
 //write a function to update user pin
-export const resetUserPin = async (payload: {
-    code: string;
-    pin: string;
-}): Promise<{ message: string }> => {
-    const response = await FetchUtils.patch(
-        `${apiUrl}/resetpin`,
-        payload,
+export const deleteTask = async (id: string): Promise<{ message: string }> => {
+    const response = await FetchUtils.deleteData(
+        `${apiUrl}/${id}`,
         {
             isWithToken: true,
             isWithCache: false,
@@ -115,20 +110,6 @@ export const resetUserPin = async (payload: {
     return response;
 };
 
-export async function forgotPin(): Promise<{ message: string }> {
-    const device_id = getCookieValue("deviceid");
-    const response = await FetchUtils.patch(
-        `${apiUrl}/forgetpin`,
-        { device_id },
-        {
-            isWithToken: false,
-            isWithCache: false,
-            cacheTags: [],
-        },
-    );
-    logger.log("response forgot pin", "debug", response);
-    return response;
-}
 
 
 

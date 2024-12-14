@@ -74,7 +74,7 @@ const usersMetadata: ITableMetadata[] = [
         columnClass: "w-full lg:w-1/6 md:text-center text-muted-foreground",
         cellClass: "w-full md:w-1/6 md:text-center ",
         type: "widget",
-        widgetName: "editTaskWidget",
+        widgetName: "actionTaskWidget",
     },
 ];
 

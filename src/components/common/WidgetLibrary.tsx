@@ -1,4 +1,4 @@
-import EditTaskDialog from "../task/EditTaskDialog";
+import ActionWidget from "../task/widget/ActionWidget";
 import TaskStatusWidget from "../task/widget/TaskStatusWidget";
 import StatusWidget from "./StatusWidget";
 
@@ -9,9 +9,9 @@ const widgets: any = {
     taskStatusWidget: (value: string, rowData: any) => {
         return <TaskStatusWidget value={value} rowData={rowData} />;
     },
-    editTaskWidget: (value: string, rowData: any) => {
+    actionTaskWidget: (value: string, rowData: any) => {
         console.log("rowData", rowData);
-        return <EditTaskDialog task={rowData} />;
+        return <ActionWidget rowData={rowData} value={value} />;
     },
 };
 export default function WidgetLibrary({

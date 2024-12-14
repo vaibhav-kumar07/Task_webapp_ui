@@ -1,10 +1,8 @@
 "use server";
-import { setCookie } from "@/lib/common/cookie-utils";
 import {
     createTask,
-    resetUserPin,
-    forgotPin,
     updateTask,
+    deleteTask,
 } from "@/lib/task";
 
 export async function createTaskHandler(
@@ -46,15 +44,14 @@ export async function updateTaskHandler(
     }
 }
 
-export async function resetPinHandler(
-    code: string,
-    pin: string,
+export async function DeleteTaskHandler(
+    id: string
 ): Promise<{ message: string; isError: boolean }> {
     try {
-        const { message } = await resetUserPin({ code, pin });
+        const { message } = await deleteTask(id);
         return { message, isError: false };
     } catch (error: any) {
-        console.error("Error in updateUserStatusHandler:", error);
+
         return {
             message: error.message,
             isError: true,
@@ -62,32 +59,4 @@ export async function resetPinHandler(
     }
 }
 
-export async function ForgotPinHandler(): Promise<{
-    message: string;
-    isError: boolean;
-}> {
-    try {
-        const response = await forgotPin();
-        return response as { message: string; isError: boolean };
-    } catch (error: any) {
-        console.error("Error in updateUserStatusHandler:", error);
-        return {
-            message: error.message,
-            isError: true,
-        };
-    }
-}
 
-export async function LogoutHandler() {
-    try {
-        console.log("LogoutHandler");
-        setCookie("token", "");
-    } catch (error: any) {
-        console.error("Error in updateUserStatusHandler:", error);
-        return {
-            code: error.message,
-            message: error.message,
-            isError: true,
-        };
-    }
-}
