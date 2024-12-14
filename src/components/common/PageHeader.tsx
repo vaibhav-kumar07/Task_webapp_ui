@@ -13,7 +13,7 @@ export default function PageHeader({
     return (
         <div
             className={cn(
-                " flex justify-start md:justify-center md:block pt-1 md:pb-6 pb-2  md:px-0",
+                " flex justify-start md:justify-center md:block ",
                 className,
             )}
         >

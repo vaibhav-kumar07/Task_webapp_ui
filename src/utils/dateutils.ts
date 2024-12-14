@@ -83,3 +83,29 @@ export const startOfDay = (
 ): Date => {
     return moment(strDate, format).startOf("day").toDate();
 };
+export function convertToUnixTime(startTime: string, endTime: string) {
+    const startUnix = moment(startTime).unix();
+    const endUnix = moment(endTime).unix();
+    return {
+        start_time: startUnix.toString(),
+        end_time: endUnix.toString(),
+    };
+}
+
+export function convertUnixToIndiaTimezone(
+    startUnix: string,
+    endUnix: string
+) {
+    const timezone = "Asia/Kolkata";
+
+    const startLocal = moment.unix(parseInt(startUnix)).tz(timezone).format("YYYY-MM-DD hh:mm A");
+    const endLocal = moment.unix(parseInt(endUnix)).tz(timezone).format("YYYY-MM-DD hh:mm A");
+
+    return {
+        start_time_local: startLocal,
+        end_time_local: endLocal,
+    };
+}
+export const convertToGMT = (localDate: string) => {
+    return moment.tz(localDate, moment.tz.guess()).utc().format(); // Returns ISO 8601 in GMT
+};

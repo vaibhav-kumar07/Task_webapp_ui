@@ -35,7 +35,7 @@ export async function setDeviceIdHandler(deviceId: string) {
 
 export async function logoutUserHandler() {
     setCookie("token", "");
-    setCookie("role", "");
+
 }
 
 export async function clearCookie(key: string) {

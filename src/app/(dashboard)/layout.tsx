@@ -4,6 +4,8 @@ import { Toaster } from "@/components/ui/toaster";
 import NextTopLoader from "nextjs-toploader";
 import { inter } from "@/app/fonts";
 import { cn } from "@/lib/utils";
+import Navbar from "@/components/navbar/Navbar";
+import { getCookieValue } from "@/lib/common/cookie-utils";
 
 export const metadata: Metadata = {
     title: "Task App",
@@ -15,27 +17,21 @@ export default function RootLayout({
 }: Readonly<{
     children: React.ReactNode;
 }>) {
+    const token = getCookieValue("token");
     return (
         <html lang="en" className={`${inter.className}`}>
             <body
-                className={cn(
-                    `flex flex-col md:flex-row no-scrollbar`,
-
-                    inter.className,
-                )}
+                className={cn(`w-full h-full flex flex-col `, inter.className)}
             >
                 <div className="hidden md:block ">
                     <NextTopLoader color="#5195A6" />
                 </div>
-                {/* <div role="navigation">
-                    <SideNavbar className="md:h-full md:flex md:flex-col hidden bg-gray-300" />
-                </div>
-                <div className="md:hidden sticky top-0 w-full h-full bg-background">
-                    <MobileHeader />
-                </div> */}
-                <main className="flex my-2 md:my-0 w-full h-full bg-background md:pl-2">
-                    {children}
-                </main>
+                <Navbar token={token} />
+                {token && (
+                    <main className="w-full h-full flex my-2 md:my-0  bg-background ">
+                        {children}
+                    </main>
+                )}
                 <Toaster />
             </body>
         </html>

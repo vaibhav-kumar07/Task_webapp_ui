@@ -1,14 +1,11 @@
 import * as FetchUtils from "@/lib/common/fetch-utils";
 import Logger from "@/utils/logger";
-import { Role } from "@/types/users";
+
 const logger = new Logger("lib/auth");
 
 const apiUrl = `${process.env.NEXT_PUBLIC_URL}/auth`
 
-export interface DecodedPayload {
-    _id: string;
-    role: Role;
-}
+
 export async function registertUser(payload: {
     name: string;
     email: string;
@@ -29,6 +26,17 @@ export async function loginUser(payload: {
 }): Promise<{ token: string }> {
     const response = await FetchUtils.post(`${apiUrl}/login`, payload, {
         isWithToken: false,
+        isWithCache: false,
+    });
+    logger.log("response login user", "debug", response);
+    return response;
+}
+
+
+export async function authorize(): Promise<{ token: string }> {
+
+    const response = await FetchUtils.get(`${apiUrl}/validate`, {
+        isWithToken: true,
         isWithCache: false,
     });
     logger.log("response login user", "debug", response);

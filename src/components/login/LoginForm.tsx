@@ -47,7 +47,7 @@ const LoginForm = () => {
             if (response && response.token) {
                 successToast("Login Successful");
                 setIsLoading(false);
-                router.push("/dashboard");
+                router.push("/");
             }
         } catch (error: any) {
             failureToast(error);

@@ -2,7 +2,6 @@
 import React from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { motion } from "framer-motion";
-import CommonTooltip from "./Tooltip";
 import { X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -14,22 +13,17 @@ const ClearFilters = ({ className }: { className?: string }) => {
         router.push(pathname);
     };
     return (
-        <CommonTooltip
-            text="Clear filters"
-            className="bg-primary text-primary-foreground"
+        <motion.div
+            whileHover={{ scale: 1.1, transition: { duration: 0.2 } }}
+            whileTap={{ scale: 0.9 }}
+            className={cn(
+                "bg-white text-foreground shadow-none border rounded-md h-[30px] px-1 hover:bg-muted flex items-center",
+                className,
+            )}
+            onClick={clearFiltersHandler}
         >
-            <motion.div
-                whileHover={{ scale: 1.1, transition: { duration: 0.2 } }}
-                whileTap={{ scale: 0.9 }}
-                className={cn(
-                    "bg-white text-foreground shadow-none border rounded-md h-[30px] px-1 hover:bg-muted flex items-center",
-                    className,
-                )}
-                onClick={clearFiltersHandler}
-            >
-                <X size={20} />
-            </motion.div>
-        </CommonTooltip>
+            <X size={20} />
+        </motion.div>
     );
 };
 
